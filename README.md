@@ -34,6 +34,7 @@ Step 3: Install & Provision MicroK8s:
 `   
 `   microk8s status
 `
+
 Step 4: Actions on the Control Plane Node
 
   You need to make sure the control plane node can also resolve the hostname of the workers.
