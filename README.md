@@ -23,10 +23,15 @@ Step 2: Provision the container further
 Step 3: Install & Provision MicroK8s
 
    sudo snap install microk8s --classic --channel=1.27
+   
    sudo usermod -a -G microk8s $USER
+   
    sudo chown -f -R $USER ~/.kube
+   
    su - $USER
+   
    microk8s start
+   
    microk8s status
 
 Step 4: Join to main node
