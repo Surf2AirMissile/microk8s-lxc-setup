@@ -18,7 +18,7 @@ Step 2: Provision the container further
     lxc.mount.entry: /sys/kernel/security sys/kernel/security none bind,create=file 0 0
 
   Start the server and run `crontab -e` and add the line: `@reboot ln -s /dev/console /dev/kmsg`
-  Run: `apt install -y snapd squashfuse fuse sudo && reboot - container will restart`
+  Run: `apt install -y snapd squashfuse fuse sudo && reboot` - container will restart
 
 Step 3: Install & Provision MicroK8s:
 
