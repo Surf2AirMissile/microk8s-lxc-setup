@@ -35,7 +35,16 @@ Step 3: Install & Provision MicroK8s:
 `   microk8s status
 `
 
-Step 4: Join to main node
+Step 4: Actions on the Control Plane Node
 
-    microk8s join 10.0.0.54:25000/7f5e3f5cd9f3593c61149262915436d4/8cfa202a5fc7
+  You need to make sure the control plane node can also resolve the hostname of the workers.
 
+  Add on the /etc/hosts of the control plane node: e.g.:
+
+  192.168.0.10 workerName
+
+Step 6: Get a refreshed add-node token from the control plane node
+
+    microk8s add-node
+
+Step 7: Run on the slave node
