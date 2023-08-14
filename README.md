@@ -17,22 +17,23 @@ Step 2: Provision the container further
     lxc.mount.auto: proc:rw sys:rw
     lxc.mount.entry: /sys/kernel/security sys/kernel/security none bind,create=file 0 0
 
-  Start the server and run crontab -e and add the line: @reboot ln -s /dev/console /dev/kmsg
-  Run: apt install -y snapd squashfuse fuse sudo && reboot - container will restart
+  Start the server and run crontab -e and add the line: `@reboot ln -s /dev/console /dev/kmsg`
+  Run: `apt install -y snapd squashfuse fuse sudo && reboot - container will restart`
 
-Step 3: Install & Provision MicroK8s
+Step 3: Install & Provision MicroK8s:
 
-   sudo snap install microk8s --classic --channel=1.27
-   
-   sudo usermod -a -G microk8s $USER
-   
-   sudo chown -f -R $USER ~/.kube
-   
-   su - $USER
-   
-   microk8s start
-   
-   microk8s status
+`   sudo snap install microk8s --classic --channel=1.27
+`   
+`   sudo usermod -a -G microk8s $USER
+`   
+`   sudo chown -f -R $USER ~/.kube
+`   
+`   su - $USER
+`   
+`   microk8s start
+`   
+`   microk8s status
+`
 
 Step 4: Join to main node
 
