@@ -1,5 +1,5 @@
 # microk8s-lxc-setup
-Provisioning steps for a microk8s node using Debian 12 LXC container
+Provisioning steps for a PVE microk8s node using Debian 12 LXC container
 
 Step 1: Pull the Debian 12 LXC Container using Proxmox VE Helper Script: bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/debian.sh)"
   Make the container privileged, create a root password, allow root SSH access
