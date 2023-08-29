@@ -4,7 +4,7 @@ Provisioning steps for a PVE microk8s node using Debian 12 LXC container
 Step 1: Pull the Debian 12 LXC Container using Proxmox VE Helper Script: bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/debian.sh)"
   Make the container privileged, create a root password, allow root SSH access
 
-Step 2: Provision the container further
+Step 2a: Provision the container further
 
   Set static IP of the container.
 
@@ -16,6 +16,12 @@ Step 2: Provision the container further
     lxc.apparmor.profile: unconfined
     lxc.mount.auto: proc:rw sys:rw
     lxc.mount.entry: /sys/kernel/security sys/kernel/security none bind,create=file 0 0
+
+Step 2b: [optional only if using cephfs/nfs/shared persistent storage on pve]
+
+  also add a mount point to the .conf (e.g. "mp0: /mnt/pve/cephfs/microk8s,mp=/mnt/cephfs,shared=1")
+
+Step 2c:
 
   Start the server and run `crontab -e` and add the line: `@reboot ln -s /dev/console /dev/kmsg`
   Run: `apt install -y snapd squashfuse fuse sudo && reboot` - container will restart
