@@ -41,6 +41,26 @@ Step 3: Install & Provision MicroK8s:
 `   microk8s status
 `
 
+Step 3b: Missing AppArmor profiles for microk8s on the LXC will mean after reboot the microk8s command cannot be run
+(https://sleeplessbeastie.eu/2020/07/20/how-to-deal-with-missing-apparmor-profiles-for-microk8s-on-lxd/)
+
+`   $ echo -e '#!/bin/bash\n\napparmor_parser --replace /var/lib/snapd/apparmor/profiles/snap.microk8s.*\nexit 0\n' | sudo tee /etc/rc.local
+`   
+`   #!/bin/bash
+apparmor_parser --replace /var/lib/snapd/apparmor/profiles/snap.microk8s.*
+exit 0
+`   
+`   sudo chmod +x /etc/rc.local
+`   
+`   $ /usr/lib/systemd/system-generators/systemd-rc-local-generator
+`   
+`   reboot
+`   
+`   $ systemctl status rc-local
+`   
+
+
+
 Step 4: Actions on the Control Plane Node
 
   You need to make sure the control plane node can also resolve the hostname of the workers.
